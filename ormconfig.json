@@ -1,0 +1,38 @@
+[{
+  "name": "api_1",
+  "type": "mongodb",
+  "host": "mongodb",
+  "port": 27017,
+  "database": "test",
+  "synchronize": true,
+  "logging": false,
+  "entities": ["persistence/entity/*.js"],
+  "cli": {
+    "entitiesDir": "entity"
+  }
+}, {
+  "name": "api_2",
+  "type": "mongodb",
+  "host": "mongodb",
+  "port": 27017,
+  "database": "test",
+  "synchronize": true,
+  "logging": false,
+  "entities": ["persistence/entity/*.js"],
+  "cli": {
+    "entitiesDir": "entity"
+  }
+}, 
+{
+  "name": "api_3",
+  "type": "mongodb",
+  "host": "mongodb",
+  "port": 27017,
+  "database": "test",
+  "synchronize": true,
+  "logging": false,
+  "entities": ["persistence/entity/*.js"],
+  "cli": {
+    "entitiesDir": "entity"
+  }
+}]

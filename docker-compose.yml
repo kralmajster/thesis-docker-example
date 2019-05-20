@@ -1,0 +1,63 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:xenial
+    container_name: mongo
+    ports:
+        - 27017:27017
+    command: mongod
+  api_1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000"
+    environment:
+      - MONGO_CONNECTION_NAME=api_1
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+  api_2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000"
+    environment:
+      - MONGO_CONNECTION_NAME=api_2
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+  api_3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000"
+    environment:
+      - MONGO_CONNECTION_NAME=api_3
+    depends_on:
+      - mongodb
+    links:
+      - mongodb
+  nginx: 
+    image: nginx:latest
+    container_name: nginx
+    links:
+      - api_1:api_1
+      - api_2:api_2
+      - api_3:api_3    
+    depends_on:
+      - api_1
+      - api_2
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 8080:80
+
+    
+volumes:
+  mongodb:
+  mongodb_config:
